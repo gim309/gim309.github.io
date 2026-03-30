@@ -1,126 +1,534 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>New Tab</title>
-    <style>
-        /* Default light theme */
-        body {
-            background-color: white;
-            color: black;
-            font-family: sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-        }
+<meta charset="UTF-8">
+<title>New Tab</title>
 
-        a {
-            color: blue;
-        }
 
-        .toggle-btn {
-            padding: 5px 10px;
-            border: 1px solid black;
-            cursor: pointer;
-            background-color: white;
-            color: black;
-            margin-left: 20px;
-            margin-top: 10px;
-            transition: background-color 0.3s, color 0.3s;
-        }
 
-        /* Dark theme styles */
-        body.dark-mode {
-            background-color: #121212;
-            color: white;
-        }
 
-        body.dark-mode .toggle-btn {
-            background-color: black;
-            color: white;
-            border: 1px solid white;
-        }
+<style>
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: white;
+  color: black;
+}
 
-        body.dark-mode a {
-            color: #3399ff; /* optional slightly brighter blue for dark mode */
-        }
-    </style>
+
+
+
+body.dark-mode {
+  background: #121212;
+  color: white;
+}
+
+
+
+
+/* TITLES */
+.title {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+
+
+
+
+.subtitle {
+  text-align: center;
+  font-size: 18px;
+  margin: 0;
+}
+
+
+
+
+#random-sub {
+  text-align: center;
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+
+
+
+/* GRID SYSTEM */
+.grid-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+
+
+
+.cell {
+  flex: 1;
+  max-width: 160px;
+  min-width: 80px;
+}
+
+
+
+
+/* SEARCH */
+.search-box {
+  position: relative;
+}
+
+
+
+
+.search-box input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid black;
+  outline: none;
+}
+
+
+
+
+body.dark-mode .search-box input {
+  background: black;
+  color: white;
+  border: 1px solid white;
+}
+
+
+
+
+/* SUGGESTIONS */
+.suggestions {
+  position: absolute;
+  top: 35px;
+  width: 100%;
+  background: white;
+  border: 1px solid black;
+  z-index: 999;
+}
+
+
+
+
+body.dark-mode .suggestions {
+  background: #1e1e1e;
+  border: 1px solid white;
+}
+
+
+
+
+.suggestions div {
+  padding: 5px;
+  cursor: pointer;
+}
+
+
+
+
+/* LINKS TITLE */
+.links-title {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
+
+/* BUTTONS */
+.link-btn {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+
+
+
+.link-btn:hover {
+  box-shadow: 0 0 10px #4da3ff, 0 0 20px #4da3ff;
+  transform: scale(1.05);
+}
+
+
+
+
+body.dark-mode .link-btn {
+  background: black;
+  color: white;
+  border: 1px solid white;
+}
+
+
+
+
+body.dark-mode .link-btn:hover {
+  box-shadow: 0 0 10px #3399ff, 0 0 20px #3399ff;
+}
+
+
+
+
+/* COUNTER */
+.counter {
+  font-size: 12px;
+}
+
+
+
+
+/* TOGGLE */
+.toggle-btn {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  padding: 6px 12px;
+  border: 1px solid black;
+  background: white;
+  cursor: pointer;
+  z-index: 999;
+}
+
+
+
+
+body.dark-mode .toggle-btn {
+  background: black;
+  color: white;
+  border: 1px solid white;
+}
+</style>
 </head>
+
+
+
+
 <body>
 
-    <h1 style="text-align: center; margin-top: 40px; margin-bottom: 5px;">
-        Welcome to gimy's
-    </h1>
 
-    <!-- Subtitle text under title -->
-    <p id="subtitle" style="text-align: center; font-size: 10px; margin-top: 0;"></p>
 
-    <div style="margin-left: 20px;">
-        <h3>links</h3>
 
-        <p><a href="https://gimycant.github.io/wsg">ports-&-games</a></p>
-        <p><a href="https://gimycant.github.io/gg2">monkey-gg2</a></p>
-        <p><a href="https://gimycant.github.io/gba/emulator">gba-games</a></p>
-        <p><a href="https://gimycant.github.io/html">html &lt;- Add-a-html-game-after-last /</a></p>
+<h1 class="title">Welcome to gimy's</h1>
+<p class="subtitle">disco; gimycan</p>
+<p id="random-sub"></p>
 
-        <!-- Toggle button under links -->
-        <button class="toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
-    </div>
 
-    <script>
-        // Random subtitle generator
-        function getRandomSubtitle() {
-            const subtitles = [
-                "crums",
-                "i guess",
-                "monkey",
-                "stairs",
-                "chairs",
-                "i hate cba's",
-                "milk",
-                "ice cream",
-                "rika!",
-                "woahh",
-                "hello",
-                "get to work",
-                "get to gaming",
-                "its cold",
-                "its hot",
-                "can is to can be to cannot",
-                "can't",
-                "can",
-                "unit 00",
-                "unit 01",
-                "unit 02",
-                "unit marc 6",
-                "zero",
-                "return to zero",
-                "strongest"
-            ];
 
-            // 1% chance for "subaru x stairs"
-            if (Math.random() < 0.01) {
-                return "subaru is a stairs demon, 1% btw";
-            }
 
-            // Otherwise pick random from the list
-            const index = Math.floor(Math.random() * subtitles.length);
-            return subtitles[index];
-        }
+<!-- TOP GRID -->
+<div class="grid-row">
 
-        // Set subtitle on page load
-        document.getElementById("subtitle").textContent = getRandomSubtitle();
 
-        // Dark/light toggle function
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
 
-            const btn = document.querySelector('.toggle-btn');
-            if (document.body.classList.contains('dark-mode')) {
-                btn.textContent = "Toggle Light Mode";
-            } else {
-                btn.textContent = "Toggle Dark Mode";
-            }
-        }
-    </script>
+
+  <div class="cell">
+      <div class="search-box">
+          <input id="search" placeholder="Search..." oninput="updateSearch()">
+          <div id="suggestions" class="suggestions"></div>
+      </div>
+  </div>
+
+
+
+
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+
+
+
+
+  <div class="cell counter">
+      <a href='http://www.freevisitorcounters.com'>Free Counter</a>
+      <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=960b627c1aeb2c453a8b7c408bc7b1b8ee469d42'></script>
+      <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1524684/t/5"></script>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+<h3 class="links-title">links</h3>
+
+
+
+
+<!-- BUTTON GRID -->
+<div class="grid-row">
+
+
+
+
+  <div class="cell">
+      <button class="link-btn" onclick="openBlank('https://gim309.github.io/gba/emulator')">
+   gba-games
+</button>
+  </div>
+
+
+
+
+  <div class="cell">
+      <button class="link-btn" onclick="openBlank('https://c.tenor.com/e4cMKVfOT9AAAAAd/tenor.gif')">
+   frieren
+</button>
+  </div>
+
+
+
+
+  <div class="cell">
+      <button class="link-btn" onclick="openBlank('https://gim309.github.io/htmlzs')">
+   search
+</button>
+  </div>
+
+
+
+
+  <div class="cell">
+      <button class="link-btn" onclick="openBlank('https://gim309.github.io/')">
+          cloak
+      </button>
+  </div>
+
+
+
+
+  <div class="cell">
+      <button class="link-btn" onclick="openBlank('https://turboscribe.ai/downloader/youtube/video')">
+   yt downloader
+</button>
+  </div>
+
+
+
+
+</div>
+
+
+<h3 class="links-title">games</h3>
+<div class="grid-row">
+
+
+
+
+  <div class="cell">
+      <button class="link-btn" onclick="openBlank('about:blank')">
+   MT
+</button>
+  </div>
+
+
+
+
+  <div class="cell">
+      <button class="link-btn" onclick="openBlank('about:blank')">
+   MT
+</button>
+  </div>
+
+
+
+
+  <div class="cell">
+      <button class="link-btn" onclick="openBlank('about:blank')">
+   MT
+</button>
+  </div>
+
+
+
+
+  <div class="cell">
+      <button class="link-btn" onclick="openBlank('about:blank')">
+          MT
+      </button>
+  </div>
+
+
+
+
+  <div class="cell">
+      <button class="link-btn" onclick="openBlank('about:blank')">
+   MT
+</button>
+  </div>
+
+
+
+
+</div>
+
+
+<button class="toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
+
+
+
+
+<script>
+const links = [
+  { name: "gba-games", url: "https://gim309.github.io/gba/emulator" },
+  { name: "frieren", url: "https://c.tenor.com/e4cMKVfOT9AAAAAd/tenor.gif" },
+  { name: "search", url: "https://gim309.github.io/htmlzs/" },
+  { name: "cloak", url: "https://gim309.github.io/" },
+  { name: "yt downloader", url: "https://turboscribe.ai/downloader/youtube/video" }
+];
+
+
+
+
+/* RANDOM TEXT */
+function getRandomSubtitle() {
+  const list = ["crums","monkey","stairs","milk","ice cream","zero"];
+  return list[Math.floor(Math.random()*list.length)];
+}
+document.getElementById("random-sub").textContent = getRandomSubtitle();
+
+
+
+
+/* THEME */
+if (localStorage.getItem("theme")==="dark") {
+  document.body.classList.add("dark-mode");
+}
+
+
+
+
+function toggleTheme(){
+  document.body.classList.toggle("dark-mode");
+  localStorage.setItem(
+      "theme",
+      document.body.classList.contains("dark-mode") ? "dark" : "light"
+  );
+}
+
+
+
+
+/* ===================== */
+/* TRUE ABOUT:BLANK MODE */
+/* ===================== */
+function openBlank(url){
+  const win = window.open("about:blank");
+
+
+
+
+  if(!win){
+      alert("Allow popups");
+      return;
+  }
+
+
+
+
+  win.document.write(`
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: black;
+}
+iframe {
+  border: none;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+</head>
+<body>
+<iframe src="${url}"></iframe>
+</body>
+</html>
+  `);
+
+
+
+
+  win.document.close();
+}
+
+
+
+
+/* SEARCH */
+function distance(a,b){
+  a=a.toLowerCase(); b=b.toLowerCase();
+  const dp=Array.from({length:a.length+1},()=>Array(b.length+1).fill(0));
+
+
+
+
+  for(let i=0;i<=a.length;i++) dp[i][0]=i;
+  for(let j=0;j<=b.length;j++) dp[0][j]=j;
+
+
+
+
+  for(let i=1;i<=a.length;i++){
+      for(let j=1;j<=b.length;j++){
+          dp[i][j]=Math.min(
+              dp[i-1][j]+1,
+              dp[i][j-1]+1,
+              dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1)
+          );
+      }
+  }
+  return dp[a.length][b.length];
+}
+
+
+
+
+function updateSearch(){
+  const val=document.getElementById("search").value.trim();
+  const box=document.getElementById("suggestions");
+  box.innerHTML="";
+  if(!val) return;
+
+
+
+
+  const results = links
+      .map(l=>({...l, score: distance(val,l.name)}))
+      .sort((a,b)=>a.score-b.score)
+      .slice(0,3);
+
+
+
+
+  results.forEach(r=>{
+      const div=document.createElement("div");
+      div.textContent=r.name;
+      div.onclick=()=>openBlank(r.url);
+      box.appendChild(div);
+  });
+}
+</script>
+
+
+
 
 </body>
 </html>
+
+
